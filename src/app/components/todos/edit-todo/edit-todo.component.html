@@ -1,0 +1,35 @@
+<div class="edit-todo-wrapper container has-blurred-white-bg">
+  <h2 class="is-bold">Edit Todo</h2>
+
+  <p *ngIf="!todo">Todo Not Found</p>
+
+  <form #form="ngForm" (ngSubmit)="onFormSubmit(form)" *ngIf="todo">
+    <div class="form-field">
+      <input
+        autoFocus
+        class="text-box"
+        [ngModel]="todo.content"
+        name="content"
+        type="text"
+        placeholder="Enter note title..."
+        required
+        #contentField="ngModel"
+        minlength="3"
+      />
+
+      <ng-container *ngIf="showValidationErrors && contentField.invalid">
+        <p *ngIf="contentField.errors!['required']">
+          Please enter a note title
+        </p>
+        <p *ngIf="contentField.errors!['minlength']">
+          Title must be at least 3 characters
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="btns-container">
+      <a routerLink="../" class="btn">Cancel</a>
+      <button class="btn align-end">Edit Todo</button>
+    </div>
+  </form>
+</div>

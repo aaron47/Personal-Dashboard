@@ -1,0 +1,16 @@
+<div [ngClass]="{ completed: todo.completed }" class="todo-item">
+  <div class="check-box">
+    <i class="material-icons-outlined">check</i>
+  </div>
+  <p class="todo-item-text">{{ todo.content }}</p>
+
+  <div class="todo-item-actions" (click)="$event.stopPropagation()">
+    <div class="btn todo-item-action-btn">
+      <i (click)="onEditClick()" class="material-icons">edit</i>
+    </div>
+
+    <div class="btn todo-item-action-btn">
+      <i (click)="onDeleteClick()" class="material-icons">delete</i>
+    </div>
+  </div>
+</div>

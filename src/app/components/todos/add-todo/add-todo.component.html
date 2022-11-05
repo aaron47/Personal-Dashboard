@@ -1,0 +1,33 @@
+<div class="add-todo-wrapper container has-blurred-white-bg">
+  <h2 class="is-bold">New Todo</h2>
+
+  <form #form="ngForm" (ngSubmit)="onFormSubmit(form)">
+    <div class="form-field">
+      <input
+        autoFocus
+        class="text-box"
+        ngModel
+        name="content"
+        type="text"
+        placeholder="Enter todo title..."
+        required
+        #contentField="ngModel"
+        minlength="3"
+      />
+
+      <ng-container *ngIf="showValidationErrors && contentField.invalid">
+        <p *ngIf="contentField.errors!['required']">
+          Please enter a note title
+        </p>
+        <p *ngIf="contentField.errors!['minlength']">
+          Title must be at least 3 characters
+        </p>
+      </ng-container>
+    </div>
+
+    <div class="btns-container">
+      <a routerLink="../" class="btn">Cancel</a>
+      <button class="btn align-end">Create Todo</button>
+    </div>
+  </form>
+</div>
